@@ -4,9 +4,13 @@ var express = require("express");
 var uuid = require("uuid");
 var app = express();
 var path = require("path");
-
 const fs = require("fs");
 const util = require("util");
+
+//DATE TIME FORMATTER
+var dayjs = require('dayjs')
+//import dayjs from 'dayjs' // ES 2015
+dayjs().format()
 
 
 var PORT = 3000;
@@ -47,7 +51,7 @@ app.get("/submit", function (req, res) {
 });
 
 app.get("/api/request/:uuid", function(req,res){
-     var uuid = req.params.uuid ;
+    var uuid = req.params.uuid ;
      console.log(uuid)
     let obj = unreadRequest.find(obj => obj.uuid == uuid);
     res.json(obj)
@@ -57,14 +61,18 @@ app.post("/api/submit", function (req, res) {
     var newRequest = req.body;
 
     newRequest.uuid = uuid.v4()
+    newRequest.timestamp = dayjs().format();
     unreadRequest.push(newRequest);
 
     res.json(newRequest);
     //console.log(newRequest);
 
     writeFileAsync("unreadRequest.json", JSON.stringify(unreadRequest))
-
 });
+
+app.get("/api/requests/", function(req,res){
+    return res.json(unreadRequest);
+})
 
 // Listener
 // ===========================================================
