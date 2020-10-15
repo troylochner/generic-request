@@ -3,13 +3,17 @@
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
-
 const fs = require("fs");
 const util = require("util");
+const uuid = require("uuid");
+const dayjs = require("dayjs");
+var unreadRequest = require("../data/unreadRequest");
 
 
 // ================================================================================
 //GET UNREAD REQUESTS
+
+/*
 var unreadRequest = [] ; 
 
 fs.readFile("data/unreadRequest.json", "utf8", function(error, data) {
@@ -17,7 +21,7 @@ fs.readFile("data/unreadRequest.json", "utf8", function(error, data) {
       return ;
     }
     unreadRequest= JSON.parse(data);
-  });
+  });*/
   // ================================================================================
 
 
@@ -64,8 +68,8 @@ module.exports = function(app) {
 
     res.json(newRequest);
     //console.log(newRequest);
-
-    writeFileAsync("data/unreadRequest.json", JSON.stringify(unreadRequest))
+    //fs.writeFile("data/unreadRequest.json", JSON.stringify(unreadRequest))
+    //writeFileAsync("data/unreadRequest.json", JSON.stringify(unreadRequest))
 });
 
 
