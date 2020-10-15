@@ -4,9 +4,7 @@
 var express = require("express");
 var uuid = require("uuid");
 var path = require("path");
-const fs = require("fs");
-const util = require("util");
-var dt = require('./modules/script');
+
 
 
 //DATE TIME FORMATTER
@@ -39,21 +37,8 @@ require("./routes/htmlRoutes")(app);
 
 // ================================================================================
 //SETUP WRITE FILE OPTIONS
-const writeFileAsync = util.promisify(fs.writeFile);
+//const writeFileAsync = util.promisify(fs.writeFile);
 // ================================================================================
-
-// ================================================================================
-//GET UNREAD REQUESTS
-var unreadRequest = [] ; 
-
-fs.readFile("unreadRequest.json", "utf8", function(error, data) {
-    if (error) {
-      return ;
-    }
-    unreadRequest= JSON.parse(data);
-  });
-  // ================================================================================
-
 
 // =============================================================================
 // LISTENER
