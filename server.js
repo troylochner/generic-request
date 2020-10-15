@@ -7,6 +7,9 @@ var path = require("path");
 const fs = require("fs");
 const util = require("util");
 
+var dt = require('./modules/script');
+
+
 //DATE TIME FORMATTER
 var dayjs = require('dayjs')
 //import dayjs from 'dayjs' // ES 2015
